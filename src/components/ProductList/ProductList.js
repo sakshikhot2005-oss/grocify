@@ -1,0 +1,181 @@
+  
+  
+  // Auto import all images
+const images = import.meta.glob("/src/assets/Grocery Website Assets/*.png", {
+  eager: true,
+  import: "default",
+});
+
+const ProductList = [
+  {
+    id: 1,
+    title: "Strawberry",
+    price: "3.00",
+    category: "Fruits",
+    image: images["/src/assets/Grocery Website Assets/strawberry.png"],
+  },
+  {
+    id: 2,
+    title: "Butter",
+    price: "3.50",
+    category: "Dairy",
+    image: images["/src/assets/Grocery Website Assets/butter.png"],
+  },
+  {
+    id: 3,
+    title: "Eggs",
+    price: "3.05",
+    category: "Dairy",
+    image: images["/src/assets/Grocery Website Assets/eggs.png"],
+  },
+  {
+    id: 4,
+    title: "Cabbage",
+    price: "2.20",
+    category: "Vegetables",
+    image: images["/src/assets/Grocery Website Assets/cabbage.png"],
+  },
+  {
+    id: 5,
+    title: "Shrimp",
+    price: "6.00",
+    category: "Seafood",
+    image: images["/src/assets/Grocery Website Assets/shrimp.png"],
+  },
+  {
+  id: 6,
+    title: "Kiwi",
+    price: "4.56",
+    category: "Seafood",
+    image: images["/src/assets/Grocery Website Assets/shrimp.png"],
+  },
+  {
+  id: 7,
+    title: "Capsicum",
+    price: "5.26",
+    category: "Seafood",
+    image: images["/src/assets/Grocery Website Assets/capsicum.png"],
+  },
+  {
+    id: 8,
+    title: "Beef",
+    price: "7.29",
+    category: "Seafood",
+    image: images["/src/assets/Grocery Website Assets/beef.png"],
+  },
+   {
+    id: 9,
+    title: "Kale",
+    price: "3.90",
+    category: "Seafood",
+    image: images["/src/assets/Grocery Website Assets/kale.png"],
+  },
+   {
+    id: 10,
+    title: "Cheese",
+    price: "8.63",
+    category: "Seafood",
+    image: images["/src/assets/Grocery Website Assets/cheese.png"],
+  },
+   {
+    id: 11,
+    title: "Salmon",
+    price: "8.56",
+    category: "Seafood",
+    image: images["/src/assets/Grocery Website Assets/salmon.png"],
+  },
+   {
+    id: 12,
+    title: "Milk",
+    price: "7.15",
+    category: "Seafood",
+    image: images["/src/assets/Grocery Website Assets/milk.png"],
+  },
+  {
+    id: 13,
+    title: "Lettuce",
+    price: "6.74",
+    category: "Seafood",
+    image: images["/src/assets/Grocery Website Assets/lettuce.png"],
+  },
+  {
+    id: 14,
+    title: "Pineapple",
+    price: "5.95",
+    category: "Seafood",
+    image: images["/src/assets/Grocery Website Assets/pineapple.png"],
+  },
+  {
+    id: 15,
+    title: "Tilapia",
+    price: "6.35",
+    category: "Seafood",
+    image: images["/src/assets/Grocery Website Assets/tilapia.png"],
+  },
+  {
+    id: 16,
+    title: "Slice-Cheese",
+    price: "3.65",
+    category: "Seafood",
+    image: images["/src/assets/Grocery Website Assets/slice-cheese.png"],
+  },
+  {
+    id: 17,
+    title: "Milk",
+    price: "5.29",
+    category: "Seafood",
+    image: images["/src/assets/Grocery Website Assets/milk.png"],
+  },
+  {
+    id: 18,
+    title: "Grapes",
+    price: "6.71",
+    category: "Seafood",
+    image: images["/src/assets/Grocery Website Assets/grapes.png"],
+  },
+  {
+    id: 19,
+    title: "Ricotta-Cheese",
+    price: "4.15",
+    category: "Seafood",
+    image: images["/src/assets/Grocery Website Assets/ricotta-cheese.png"],
+  },
+  {
+    id: 20,
+    title: "Fresh-Fruits",
+    price: "6.00",
+    category: "Seafood",
+    image: images["/src/assets/Grocery Website Assets/fresh-fruits.png"],
+  },
+  {
+    id: 21,
+    title: "Yogurt",
+    price: "5.00",
+    category: "Seafood",
+    image: images["/src/assets/Grocery Website Assets/yogurt.png"],
+  },
+  {
+    id: 22,
+    title: "Meat-And-Seafood",
+    price: "8.20",
+    category: "Seafood",
+    image: images["/src/assets/Grocery Website Assets/meat-and-seafood.png"],
+  },
+  {
+    id: 23,
+    title: "Eggplant",
+    price: "6.30",
+    category: "Seafood",
+    image: images["/src/assets/Grocery Website Assets/eggplant.png"],
+  },
+  {
+    id: 24,
+    title: "Tofu",
+    price: "6.00",
+    category: "Seafood",
+    image: images["/src/assets/Grocery Website Assets/tofu.png"],
+  },
+  
+];
+
+export default ProductList;
