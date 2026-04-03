@@ -1,4 +1,5 @@
 import React from "react";
+import { useCart } from "../../context/CartContext";  // ✅ ADD
 
 const products = [
   {
@@ -30,7 +31,6 @@ const products = [
     name: "Cheese",
     price: 240,
     image: "/src/assets/Grocery Website Assets/ricotta-cheese.png",
-  
   },
   {
     id: 6,
@@ -41,6 +41,9 @@ const products = [
 ];
 
 const ShopNow = () => {
+
+  const { addToCart } = useCart();   // ✅ USE CONTEXT
+
   return (
     <section className="max-w-[1200px] mx-auto px-6 py-16">
 
@@ -69,9 +72,14 @@ const ShopNow = () => {
                 ₹{product.price}
               </p>
 
-              <button className="bg-orange-500 text-white px-5 py-2 rounded-lg hover:bg-orange-600 transition duration-300">
+              {/* ✅ ADD TO CART WORKING */}
+              <button
+                onClick={() => addToCart(product)}
+                className="bg-orange-500 text-white px-5 py-2 rounded-lg hover:bg-orange-600 transition duration-300"
+              >
                 Add to Cart
               </button>
+
             </div>
           </div>
         ))}

@@ -1,47 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
+import { useCart } from "../../context/CartContext";
 
 function Cart() {
-  const [cartItems, setCartItems] = useState([
-    { id: 1, name: "Fresh Apples", price: 120, quantity: 1 },
-    { id: 2, name: "Milk", price: 55, quantity: 2 },
-  ]);
 
-  // Increase Quantity
-  const increaseQty = (id) => {
-    setCartItems(
-      cartItems.map((item) =>
-        item.id === id
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      )
-    );
-  };
+  const {
+    cartItems,
+    increaseQty,
+    decreaseQty,
+    removeItem
+  } = useCart();
 
-  // Decrease Quantity
-  const decreaseQty = (id) => {
-    setCartItems(
-      cartItems.map((item) =>
-        item.id === id && item.quantity > 1
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      )
-    );
-  };
-
-  // Remove Item
-  const removeItem = (id) => {
-    setCartItems(cartItems.filter((item) => item.id !== id));
-  };
-
-  // Total Price
   const totalPrice = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
     0
   );
 
   return (
-    <section className="max-w-[1000px] mx-auto px-6 py-16">
-      <h2 className="text-4xl font-bold text-center mb-10">
+    <section className="max-w-[1200px] mx-auto px-6 py-16">
+
+      <h2 className="text-4xl font-bold text-center mb-12">
         Your Cart
       </h2>
 
@@ -50,44 +27,57 @@ function Cart() {
           Your cart is empty.
         </p>
       ) : (
-        <>
-          <div className="space-y-6">
+
+        <div className="grid md:grid-cols-3 gap-10">
+
+          {/* LEFT SIDE */}
+          <div className="md:col-span-2 space-y-6">
+
             {cartItems.map((item) => (
               <div
                 key={item.id}
-                className="flex justify-between items-center bg-white shadow-md p-6 rounded-xl"
+                className="flex items-center gap-5 bg-white shadow-md p-4 rounded-xl"
               >
-                <div>
+
+                {/* ✅ PRODUCT IMAGE */}
+                <div className="w-[80px] h-[80px] bg-zinc-100 rounded-lg overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                {/* DETAILS */}
+                <div className="flex-1">
                   <h3 className="text-lg font-semibold">
                     {item.name}
                   </h3>
+
                   <p className="text-orange-500 font-bold">
                     ₹{item.price}
                   </p>
+
+                  <div className="flex items-center gap-3 mt-2">
+                    <button
+                      onClick={() => decreaseQty(item.id)}
+                      className="bg-zinc-200 px-3 py-1 rounded"
+                    >
+                      -
+                    </button>
+
+                    <span>{item.quantity}</span>
+
+                    <button
+                      onClick={() => increaseQty(item.id)}
+                      className="bg-zinc-200 px-3 py-1 rounded"
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
 
-                {/* Quantity Controls */}
-                <div className="flex items-center gap-4">
-                  <button
-                    onClick={() => decreaseQty(item.id)}
-                    className="bg-zinc-200 px-3 py-1 rounded"
-                  >
-                    -
-                  </button>
-
-                  <span className="font-semibold">
-                    {item.quantity}
-                  </span>
-
-                  <button
-                    onClick={() => increaseQty(item.id)}
-                    className="bg-zinc-200 px-3 py-1 rounded"
-                  >
-                    +
-                  </button>
-                </div>
-
-                {/* Remove Button */}
+                {/* REMOVE */}
                 <button
                   onClick={() => removeItem(item.id)}
                   className="text-red-500 font-semibold"
@@ -96,20 +86,47 @@ function Cart() {
                 </button>
               </div>
             ))}
+
           </div>
 
-          {/* Total Section */}
-          <div className="mt-10 text-right">
-            <h3 className="text-2xl font-bold">
-              Total: ₹{totalPrice}
+          {/* RIGHT SIDE */}
+          <div className="bg-white shadow-md rounded-xl p-6 h-fit">
+
+            <h3 className="text-2xl font-bold mb-6">
+              Order Summary
             </h3>
 
-            <button className="mt-4 bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition duration-300">
+            <div className="flex justify-between mb-3">
+              <span>Items</span>
+              <span>{cartItems.length}</span>
+            </div>
+
+            <div className="flex justify-between mb-3">
+              <span>Subtotal</span>
+              <span>₹{totalPrice}</span>
+            </div>
+
+            <div className="flex justify-between mb-3">
+              <span>Delivery</span>
+              <span>₹0</span>
+            </div>
+
+            <hr className="my-4" />
+
+            <div className="flex justify-between text-xl font-bold">
+              <span>Total</span>
+              <span>₹{totalPrice}</span>
+            </div>
+
+            <button className="mt-6 w-full bg-orange-500 text-white py-3 rounded-lg hover:bg-orange-600 transition">
               Proceed to Checkout
             </button>
+
           </div>
-        </>
+
+        </div>
       )}
+
     </section>
   );
 }
