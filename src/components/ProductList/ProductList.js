@@ -1,10 +1,13 @@
-  
-  
-  // Auto import all images
-const images = import.meta.glob("/src/assets/Grocery Website Assets/*.png", {
-  eager: true,
-  import: "default",
-});
+const images = import.meta.glob(
+  "/src/assets/Grocery Website Assets/*.png",
+  {
+    eager: true,
+    import: "default",
+  }
+);
+
+const getImg = (name) =>
+  images[`/src/assets/Grocery Website Assets/${name}.png`];
 
 const ProductList = [
   {
@@ -12,170 +15,141 @@ const ProductList = [
     title: "Strawberry",
     price: "3.00",
     category: "Fruits",
-    image: images["/src/assets/Grocery Website Assets/strawberry.png"],
+    image: getImg("strawberry"),
   },
   {
     id: 2,
     title: "Butter",
     price: "3.50",
     category: "Dairy",
-    image: images["/src/assets/Grocery Website Assets/butter.png"],
+    image: getImg("butter"),
   },
   {
     id: 3,
     title: "Eggs",
     price: "3.05",
     category: "Dairy",
-    image: images["/src/assets/Grocery Website Assets/eggs.png"],
+    image: getImg("eggs"),
   },
   {
     id: 4,
     title: "Cabbage",
     price: "2.20",
     category: "Vegetables",
-    image: images["/src/assets/Grocery Website Assets/cabbage.png"],
+    image: getImg("cabbage"),
   },
   {
     id: 5,
     title: "Shrimp",
     price: "6.00",
     category: "Seafood",
-    image: images["/src/assets/Grocery Website Assets/shrimp.png"],
+    image: getImg("shrimp"),
   },
   {
-  id: 6,
+    id: 6,
     title: "Kiwi",
     price: "4.56",
-    category: "Seafood",
-    image: images["/src/assets/Grocery Website Assets/shrimp.png"],
+    category: "Fruits",
+    image: getImg("kiwi"),
   },
   {
-  id: 7,
+    id: 7,
     title: "Capsicum",
     price: "5.26",
-    category: "Seafood",
-    image: images["/src/assets/Grocery Website Assets/capsicum.png"],
+    category: "Vegetables",
+    image: getImg("capsicum"),
   },
   {
     id: 8,
     title: "Beef",
     price: "7.29",
     category: "Seafood",
-    image: images["/src/assets/Grocery Website Assets/beef.png"],
+    image: getImg("beef"),
   },
-   {
+  {
     id: 9,
     title: "Kale",
     price: "3.90",
-    category: "Seafood",
-    image: images["/src/assets/Grocery Website Assets/kale.png"],
+    category: "Vegetables",
+    image: getImg("kale"),
   },
-   {
+  {
     id: 10,
     title: "Cheese",
     price: "8.63",
-    category: "Seafood",
-    image: images["/src/assets/Grocery Website Assets/cheese.png"],
+    category: "Dairy",
+    image: getImg("cheese"),
   },
-   {
+  {
     id: 11,
     title: "Salmon",
     price: "8.56",
     category: "Seafood",
-    image: images["/src/assets/Grocery Website Assets/salmon.png"],
+    image: getImg("salmon"),
   },
-   {
+  {
     id: 12,
     title: "Milk",
     price: "7.15",
-    category: "Seafood",
-    image: images["/src/assets/Grocery Website Assets/milk.png"],
+    category: "Dairy",
+    image: getImg("milk"),
   },
   {
     id: 13,
     title: "Lettuce",
     price: "6.74",
-    category: "Seafood",
-    image: images["/src/assets/Grocery Website Assets/lettuce.png"],
+    category: "Vegetables",
+    image: getImg("lettuce"),
   },
   {
     id: 14,
     title: "Pineapple",
     price: "5.95",
-    category: "Seafood",
-    image: images["/src/assets/Grocery Website Assets/pineapple.png"],
+    category: "Fruits",
+    image: getImg("pineapple"),
   },
   {
     id: 15,
     title: "Tilapia",
     price: "6.35",
     category: "Seafood",
-    image: images["/src/assets/Grocery Website Assets/tilapia.png"],
+    image: getImg("tilapia"),
   },
   {
     id: 16,
-    title: "Slice-Cheese",
+    title: "Slice Cheese",
     price: "3.65",
-    category: "Seafood",
-    image: images["/src/assets/Grocery Website Assets/slice-cheese.png"],
+    category: "Dairy",
+    image: getImg("slice-cheese"),
   },
   {
     id: 17,
-    title: "Milk",
-    price: "5.29",
-    category: "Seafood",
-    image: images["/src/assets/Grocery Website Assets/milk.png"],
+    title: "Grapes",
+    price: "6.71",
+    category: "Fruits",
+    image: getImg("grapes"),
   },
   {
     id: 18,
-    title: "Grapes",
-    price: "6.71",
-    category: "Seafood",
-    image: images["/src/assets/Grocery Website Assets/grapes.png"],
+    title: "Ricotta Cheese",
+    price: "4.15",
+    category: "Dairy",
+    image: getImg("ricotta-cheese"),
   },
   {
     id: 19,
-    title: "Ricotta-Cheese",
-    price: "4.15",
-    category: "Seafood",
-    image: images["/src/assets/Grocery Website Assets/ricotta-cheese.png"],
+    title: "Fresh Fruits",
+    price: "6.00",
+    category: "Fruits",
+    image: getImg("fresh-fruits"),
   },
   {
     id: 20,
-    title: "Fresh-Fruits",
-    price: "6.00",
-    category: "Seafood",
-    image: images["/src/assets/Grocery Website Assets/fresh-fruits.png"],
-  },
-  {
-    id: 21,
     title: "Yogurt",
     price: "5.00",
-    category: "Seafood",
-    image: images["/src/assets/Grocery Website Assets/yogurt.png"],
+    category: "Dairy",
+    image: getImg("yogurt"),
   },
-  {
-    id: 22,
-    title: "Meat-And-Seafood",
-    price: "8.20",
-    category: "Seafood",
-    image: images["/src/assets/Grocery Website Assets/meat-and-seafood.png"],
-  },
-  {
-    id: 23,
-    title: "Eggplant",
-    price: "6.30",
-    category: "Seafood",
-    image: images["/src/assets/Grocery Website Assets/eggplant.png"],
-  },
-  {
-    id: 24,
-    title: "Tofu",
-    price: "6.00",
-    category: "Seafood",
-    image: images["/src/assets/Grocery Website Assets/tofu.png"],
-  },
-  
 ];
 
 export default ProductList;

@@ -4,8 +4,6 @@ import Cards from "../Cards/Cards";
 import Banner from "../Banner/Banner";
 
 function CategoryPage({ title, bgImage, categories }) {
-
-  // ✅ Filter Logic
   const filteredItems =
     categories.includes("All")
       ? ProductList
@@ -13,24 +11,19 @@ function CategoryPage({ title, bgImage, categories }) {
           categories.includes(item.category)
         );
 
-  // ✅ Map Products
-  const renderProduct = filteredItems.map((product) => {
-    return (
-      <Cards
-        key={product.id}   // ✅ important
-        image={product.image}
-        name={product.name}
-        price={product.price}
-      />
-    );
-  });
-
   return (
     <div>
       <Banner title={title} bgImage={bgImage} />
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-9 py-20 max-w-[1400px] mx-auto px-10">
-        {renderProduct}
+        {filteredItems.map((product) => (
+          <Cards
+            key={product.id}
+            image={product.image}
+            name={product.title}
+            price={product.price}
+          />
+        ))}
       </div>
     </div>
   );
