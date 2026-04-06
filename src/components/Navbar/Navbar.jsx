@@ -3,9 +3,13 @@ import { FaHeart, FaSearch } from "react-icons/fa";
 import { HiMiniShoppingBag } from "react-icons/hi2";
 import { TbMenu2, TbMenu3 } from "react-icons/tb";
 import { Link } from "react-router-dom";
+import { useCart } from "../../context/CartContext";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
+
+  // ✅ SAFE (no crash)
+  const { cartItems = [], wishlist = [] } = useCart() || {};
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -43,15 +47,29 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* Wishlist */}
-          <FaHeart className="text-2xl text-zinc-800 hover:text-orange-500 cursor-pointer" />
+          {/* ❤️ Wishlist */}
+          <div className="relative">
+            <FaHeart className="text-2xl text-zinc-800 hover:text-orange-500 cursor-pointer" />
 
-          {/* Cart */}
+            {wishlist.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-1 rounded-full">
+                {wishlist.length}
+              </span>
+            )}
+          </div>
+
+          {/* 🛒 Cart */}
           <Link
             to="/cart"
-            className="text-2xl text-zinc-800 hover:text-orange-500"
+            className="relative text-2xl text-zinc-800 hover:text-orange-500"
           >
             <HiMiniShoppingBag />
+
+            {cartItems.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-orange-500 text-white text-xs px-1 rounded-full">
+                {cartItems.length}
+              </span>
+            )}
           </Link>
 
           {/* Mobile Toggle */}
