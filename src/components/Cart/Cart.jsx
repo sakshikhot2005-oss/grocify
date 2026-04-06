@@ -1,5 +1,6 @@
 import React from "react";
 import { useCart } from "../../context/CartContext";
+import { Link } from "react-router-dom"; // ✅ ADD
 
 function Cart() {
 
@@ -39,7 +40,7 @@ function Cart() {
                 className="flex items-center gap-5 bg-white shadow-md p-4 rounded-xl"
               >
 
-                {/* ✅ PRODUCT IMAGE */}
+                {/* IMAGE */}
                 <div className="w-[80px] h-[80px] bg-zinc-100 rounded-lg overflow-hidden">
                   <img
                     src={item.image}
@@ -118,9 +119,12 @@ function Cart() {
               <span>₹{totalPrice}</span>
             </div>
 
-            <button className="mt-6 w-full bg-orange-500 text-white py-3 rounded-lg hover:bg-orange-600 transition">
-              Proceed to Checkout
-            </button>
+            {/* ✅ UPDATED BUTTON */}
+            <Link to="/checkout">
+              <button className="mt-6 w-full bg-orange-500 text-white py-3 rounded-lg hover:bg-orange-600 transition">
+                Proceed to Checkout
+              </button>
+            </Link>
 
           </div>
 
