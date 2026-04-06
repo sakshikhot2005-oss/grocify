@@ -18,6 +18,8 @@ import ShopNow from "./components/ShopNow/ShopNow";
 import Cart from "./components/Cart/Cart";
 import Checkout from "./components/Checkout/Checkout";
 import Payment from "./components/Payment/Payment";
+import SearchResults from "./components/SearchResults/SearchResults";
+
 
 // Layout Component
 const Layout = () => {
@@ -47,6 +49,7 @@ const router = createBrowserRouter([
       { path: "cart", element: <Cart /> },
       { path: "checkout", element: <Checkout /> },
       { path: "payment", element: <Payment /> },
+      { path: "searchresults", element: <Payment />},
     ],
   },
 ]);

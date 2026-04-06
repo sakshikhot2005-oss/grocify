@@ -2,17 +2,28 @@ import { useState } from "react";
 import { FaHeart, FaSearch } from "react-icons/fa";
 import { HiMiniShoppingBag } from "react-icons/hi2";
 import { TbMenu2, TbMenu3 } from "react-icons/tb";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const [search, setSearch] = useState("");
 
-  // ✅ SAFE FIX
+  const navigate = useNavigate();
+
+  // safe cart fix
   const { cartItems = [], wishlist = [] } = useCart() || {};
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
+  };
+
+  // 🔍 search function
+  const handleSearch = () => {
+    if (search.trim() !== "") {
+      navigate(`/search?q=${search}`);
+      setSearch("");
+    }
   };
 
   return (
@@ -35,10 +46,27 @@ const Navbar = () => {
         {/* Right */}
         <div className="flex items-center gap-x-5">
 
+          {/* 🔍 Search */}
+          <div className="hidden md:flex items-center border-2 border-orange-500 rounded-full px-2">
+            <input
+              type="text"
+              placeholder="Search product..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+              className="px-2 py-1 focus:outline-none"
+            />
+            <button
+              onClick={handleSearch}
+              className="bg-orange-500 text-white w-8 h-8 flex items-center justify-center rounded-full"
+            >
+              <FaSearch />
+            </button>
+          </div>
+
           {/* ❤️ Wishlist */}
           <div className="relative">
             <FaHeart className="text-2xl text-zinc-800 hover:text-orange-500 cursor-pointer" />
-
             {wishlist.length > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-1 rounded-full">
                 {wishlist.length}
@@ -49,7 +77,6 @@ const Navbar = () => {
           {/* 🛒 Cart */}
           <Link to="/cart" className="relative text-2xl text-zinc-800 hover:text-orange-500">
             <HiMiniShoppingBag />
-
             {cartItems.length > 0 && (
               <span className="absolute -top-2 -right-2 bg-orange-500 text-white text-xs px-1 rounded-full">
                 {cartItems.length}
