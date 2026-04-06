@@ -8,7 +8,7 @@ import { useCart } from "../../context/CartContext";
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
 
-  // ✅ SAFE (no crash)
+  // ✅ SAFE FIX
   const { cartItems = [], wishlist = [] } = useCart() || {};
 
   const toggleMenu = () => {
@@ -32,20 +32,8 @@ const Navbar = () => {
           <li><Link to="/contact" className="font-semibold hover:text-orange-500">Contact Us</Link></li>
         </ul>
 
-        {/* Right Section */}
+        {/* Right */}
         <div className="flex items-center gap-x-5">
-
-          {/* Search */}
-          <div className="hidden md:flex items-center border-2 border-orange-500 rounded-full px-2">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="px-2 py-1 focus:outline-none"
-            />
-            <button className="bg-orange-500 text-white w-8 h-8 flex items-center justify-center rounded-full">
-              <FaSearch />
-            </button>
-          </div>
 
           {/* ❤️ Wishlist */}
           <div className="relative">
@@ -59,10 +47,7 @@ const Navbar = () => {
           </div>
 
           {/* 🛒 Cart */}
-          <Link
-            to="/cart"
-            className="relative text-2xl text-zinc-800 hover:text-orange-500"
-          >
+          <Link to="/cart" className="relative text-2xl text-zinc-800 hover:text-orange-500">
             <HiMiniShoppingBag />
 
             {cartItems.length > 0 && (

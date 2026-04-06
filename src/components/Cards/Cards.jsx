@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaHeart, FaPlus } from "react-icons/fa";
 import { useCart } from "../../context/CartContext";
 
 const Cards = ({ id, image, name, price }) => {
-  const [liked, setLiked] = useState(false);
 
-  const { addToCart, toggleWishlist } = useCart();
+  const { addToCart, addToWishlist, removeFromWishlist, wishlist } = useCart();
 
   const product = {
     id,
@@ -13,6 +12,8 @@ const Cards = ({ id, image, name, price }) => {
     price: Number(price),
     image,
   };
+
+  const isLiked = wishlist.some((item) => item.id === id);
 
   return (
     <div className="p-4 bg-white shadow-md rounded-xl text-center hover:shadow-lg transition duration-300">
@@ -22,12 +23,13 @@ const Cards = ({ id, image, name, price }) => {
 
         {/* ❤️ Wishlist */}
         <button
-          onClick={() => {
-            setLiked(!liked);
-            toggleWishlist(product);
-          }}
+          onClick={() =>
+            isLiked
+              ? removeFromWishlist(id)
+              : addToWishlist(product)
+          }
           className={`text-xl ${
-            liked ? "text-red-500" : "text-zinc-300 hover:text-red-400"
+            isLiked ? "text-red-500" : "text-zinc-300 hover:text-red-400"
           }`}
         >
           <FaHeart />
@@ -36,7 +38,7 @@ const Cards = ({ id, image, name, price }) => {
         {/* ➕ Cart */}
         <button
           onClick={() => addToCart(product)}
-          className="bg-gradient-to-b from-orange-400 to-orange-500 text-white p-2 rounded-lg text-sm"
+          className="bg-gradient-to-b from-orange-400 to-orange-500 text-white p-2 rounded-lg text-sm hover:scale-105 transition"
         >
           <FaPlus />
         </button>
@@ -53,7 +55,7 @@ const Cards = ({ id, image, name, price }) => {
         ₹{price}
       </p>
 
-      <button className="bg-orange-500 text-white px-3 py-1 text-sm rounded-md">
+      <button className="bg-orange-500 text-white px-3 py-1 text-sm rounded-md hover:bg-orange-600 transition">
         Shop Now
       </button>
     </div>
