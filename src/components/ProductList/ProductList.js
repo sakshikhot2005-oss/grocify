@@ -61,8 +61,10 @@ const ProductList = [
   },
   {
     id: 8,
+
+    
     title: "Beef",
-    price: "10.00",
+    price: "100.00",
     category: "Seafood",
     image: getImg("beef"),
   },
